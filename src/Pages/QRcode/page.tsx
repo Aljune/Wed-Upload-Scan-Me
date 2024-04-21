@@ -1,4 +1,4 @@
-import Reac from 'react';
+import React from 'react';
 import QRCodeGenerator from '../../components/container/commons/QRCodeGenerator';
 
 const QRCodePage: React.FC = () => {

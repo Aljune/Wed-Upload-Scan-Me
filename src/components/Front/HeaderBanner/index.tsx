@@ -1,12 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { Paper, Box } from '@mui/material';
 import Banner from '../../../assets/images/banner/wedding-bg.png';
 
-interface Props {
-}
 
-const HeaderBanner = (props: Props) => {
+const HeaderBanner = () => {
     return (
     <>
         <Paper sx={{ overflow:'hidden', height: '50vh', minWidth: '100%' ,position: 'relative', display:"flex", alignItems:"center", justifyContent: 'center'}}>

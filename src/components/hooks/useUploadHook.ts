@@ -1,5 +1,5 @@
 import React from 'react';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 
 interface FormData {
     name: string;
@@ -12,7 +12,7 @@ const useUploadHook = () => {
         message: ''
     });
 
-    const { register, handleSubmit, control } = useForm({
+    const { handleSubmit, control } = useForm({
         defaultValues: {
             name: dataEdit.name,
             message: dataEdit.message,
@@ -30,6 +30,7 @@ const useUploadHook = () => {
         submit,
         control,
         handleSubmit,
+        setDataEdit,
     }
 }
 export default useUploadHook;

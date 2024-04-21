@@ -1,7 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Paper, Box } from '@mui/material';
-import Banner from '../../assets/images/banner/wedding-bg.png';
+// import { Link } from 'react-router-dom';
+// import { Paper, Box } from '@mui/material';
+// import Banner from '../../assets/images/banner/wedding-bg.png';
 
 const Header: React.FC = () => {
   return (
