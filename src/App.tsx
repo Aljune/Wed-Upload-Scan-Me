@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Front/Header';
 import Home from './Pages/Home/page';
+import QRcode from './Pages/QRcode/page';
 import './App.css';
 
 
@@ -17,6 +18,7 @@ const App: React.FC = () => {
       <Header/>
       <Routes>
         <Route path="/" element={<Home/>} />
+        <Route path="/my-qr-code" element={<QRcode/>} />
       </Routes>
     </Router>
   

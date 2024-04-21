@@ -1,3 +1,17 @@
+.island-moments-regular {
+  font-family: "Island Moments", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+.header-text{
+  -webkit-text-stroke-width: 0.5px;
+    -webkit-text-stroke-color: #FFFFFF;
+}
+
+.MuiDropzonePreviewList-imageContainer {
+  word-wrap: break-word;
+}
+
 .App {
   text-align: center;
 }
