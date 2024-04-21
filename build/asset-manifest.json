@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/static/css/main.e9236723.css",
+    "main.js": "/static/js/main.b092aa96.js",
+    "static/js/453.40de4431.chunk.js": "/static/js/453.40de4431.chunk.js",
+    "static/media/wedding-bg.png": "/static/media/wedding-bg.6523fdf2bcbcaca6d0f8.png",
+    "index.html": "/index.html",
+    "main.e9236723.css.map": "/static/css/main.e9236723.css.map",
+    "main.b092aa96.js.map": "/static/js/main.b092aa96.js.map",
+    "453.40de4431.chunk.js.map": "/static/js/453.40de4431.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e9236723.css",
+    "static/js/main.b092aa96.js"
+  ]
+}
