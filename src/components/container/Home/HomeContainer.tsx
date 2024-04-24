@@ -32,7 +32,7 @@ const HomeContainer: React.FC<HomeProps> = (props) => {
                                     <NameInput control={control}/>
                                     <MessageInput control={control}/>
                                     <FileUpload/>
-                                    <Button sx={{width: '150px'}} fullWidth={false} type='submit' size="medium" variant='contained' color='success' >Submi Nowt</Button>
+                                    <Button sx={{width: '150px'}} fullWidth={false} type='submit' size="medium" variant='contained' color='success' >Submit Now</Button>
                                 </Box>
                             </form>
                     </Paper>
