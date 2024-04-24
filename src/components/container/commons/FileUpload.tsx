@@ -11,8 +11,6 @@ import { collection, addDoc } from "firebase/firestore";
 const FileUpload = () => {
     const [open, setOpen] = React.useState(false);
     const [fileObjects, setFileObjects] = React.useState<DropzoneFileObject[]>([]);
-    const [image, setImage] = React.useState<File | null>(null);
-
 
     const addImage = (newFileObjs: DropzoneFileObject[]) => {
       console.log('onAdd', newFileObjs);
