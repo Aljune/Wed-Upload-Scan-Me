@@ -7,7 +7,6 @@ import {Button} from '@mui/material';
 import { firebaseStorage, db } from '../../../config/firebaseInitializer';
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { collection, addDoc } from "firebase/firestore";
-import image from '../../../assets/images/banner/wedding-bg.png';
 
 const FileUpload = () => {
     const [open, setOpen] = React.useState(false);
