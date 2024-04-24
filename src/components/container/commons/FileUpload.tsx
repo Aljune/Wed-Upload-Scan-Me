@@ -13,35 +13,6 @@ const FileUpload = () => {
     const [fileObjects, setFileObjects] = React.useState<DropzoneFileObject[]>([]);
     const [image, setImage] = React.useState<File | null>(null);
 
-    const handleImageChange = (e: any) => {
-      if (e.target.files[0]) {
-        setImage(e.target.files[0]);
-      }
-    };
-
-    const handleUpload = async () => {
-      if (image !== null) { // Check if image is not null
-        // Upload image to Firebase Storage
-        const storageRef = ref(firebaseStorage, `images/${image.name}`);
-        await uploadBytes(storageRef, image);
-  
-        // Get download URL of the uploaded image
-        const imageUrl = await getDownloadURL(storageRef);
-  
-        // Save image data to Firestore
-        try {
-          const docRef = await addDoc(collection(db, "images"), {
-            imageUrl: imageUrl,
-            // Add additional fields if needed
-          });
-          console.log("Image uploaded and saved with ID: ", docRef.id);
-        } catch (error) {
-          console.error("Error adding image document: ", error);
-        }
-      } else {
-        console.error("No image selected");
-      }
-    };
 
     const addImage = (newFileObjs: DropzoneFileObject[]) => {
       console.log('onAdd', newFileObjs);
