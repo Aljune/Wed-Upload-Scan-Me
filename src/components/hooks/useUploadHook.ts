@@ -96,7 +96,6 @@ const useUploadHook = () => {
         };
         fn().then();
     }
-    React.useEffect(uploadFileImage, [upload]);
 
     return {
         submit,
@@ -105,7 +104,8 @@ const useUploadHook = () => {
         setDataEdit,
         fileObjects,
         setFileObjects,
-        onSaveFile
+        onSaveFile,
+        uploadFileImage
     }
 }
 export default useUploadHook;
