@@ -53,9 +53,7 @@ const useUploadHook = () => {
     React.useEffect(countData, []);
 
     const onSaveFile = async () => {
-          console.log('onSave', fileObjects);
-        if(upload) {
-            if(fileObjects.length > 0) {
+         if(fileObjects.length > 0) {
             const currentDate = new Date();
             const year = currentDate.getFullYear();
             const month = String(currentDate.getMonth() + 1).padStart(2, '0'); 
@@ -84,18 +82,16 @@ const useUploadHook = () => {
             }
           }
         setUpload(false);
-        }
           
     }
     const uploadFileImage = () => {
         const fn = async () => {
-            
-            if(upload) {
-                await onSaveFile();
-            }
+           await onSaveFile();
         };
         fn().then();
     }
+
+    React.useEffect(uploadFileImage,[]);
 
     return {
         submit,
@@ -104,7 +100,6 @@ const useUploadHook = () => {
         setDataEdit,
         fileObjects,
         setFileObjects,
-        onSaveFile,
         uploadFileImage
     }
 }
