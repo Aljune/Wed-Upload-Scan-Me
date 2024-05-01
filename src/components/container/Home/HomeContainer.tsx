@@ -8,15 +8,14 @@ import NameInput from '../Form/NameInput';
 import MessageInput from '../Form/MessageInput';
 import FileUpload from '../commons/FileUpload';
 
-
 interface HomeProps {
   title: string
-
 }
 
 const HomeContainer: React.FC<HomeProps> = (props) => {
    
-    const {submit, handleSubmit, control} = useUploadHook();
+    const {submit, handleSubmit, control, fileObjects, setFileObjects} = useUploadHook();
+    
     return (
         <>
         <HeaderBanner/>
@@ -31,7 +30,7 @@ const HomeContainer: React.FC<HomeProps> = (props) => {
                                 <Box  rowGap={2} display={'flex'} flexDirection={'column'} alignItems={'center'} >
                                     <NameInput control={control}/>
                                     <MessageInput control={control}/>
-                                    <FileUpload/>
+                                    <FileUpload fileObjects={fileObjects} setFileObjects={setFileObjects} />
                                     <Button sx={{width: '150px'}} fullWidth={false} type='submit' size="medium" variant='contained' color='success' >Submit Now</Button>
                                 </Box>
                             </form>
