@@ -15,7 +15,7 @@ const useUploadHook = () => {
 
     const [fileObjects, setFileObjects] = React.useState<DropzoneFileObject[]>([]);
 
-    const [upload, setUpload] = React.useState<boolean>(false);
+    // const [upload, setUpload] = React.useState<boolean>(false);
     const [dataEdit, setDataEdit] = React.useState<FormData>({
         name: '',
         message: ''
@@ -28,31 +28,7 @@ const useUploadHook = () => {
         },
     });
 
-
-    const submit = async (data: FormData) => {
-        const dataTest = {
-            name: data.name,
-            message: data.message
-        };
-        
-
-       const re = await addSendPic(dataTest);
-       setUpload(true);
-        console.log(re.docRef, countUser,'test'); 
-    }
-
-    console.log(fileObjects, 'fileObjects');
-
-    const countData = () => {
-        const fn = async () => {
-            const countUsers = await countUser();
-            console.log(countUsers, 'countUsers');
-        };
-        fn().then();
-    }
-    React.useEffect(countData, []);
-
-    const onSaveFile = async () => {
+     const onSaveFile = async () => {
          if(fileObjects.length > 0) {
             const currentDate = new Date();
             const year = currentDate.getFullYear();
@@ -81,17 +57,45 @@ const useUploadHook = () => {
               console.error("Error adding image document: ", error);
             }
           }
-        setUpload(false);
+        // setUpload(false);
           
     }
-    const uploadFileImage = () => {
+
+    const submit = async (data: FormData) => {
+        const dataTest = {
+            name: data.name,
+            message: data.message
+        };
+        
+
+       const re = await addSendPic(dataTest);
+        if(res.docrRef) {
+             await onSaveFile();
+        }
+       // setUpload(true);
+        console.log(re.docRef, countUser,'test'); 
+    }
+
+    console.log(fileObjects, 'fileObjects');
+
+    const countData = () => {
         const fn = async () => {
-           await onSaveFile();
+            const countUsers = await countUser();
+            console.log(countUsers, 'countUsers');
         };
         fn().then();
     }
+    React.useEffect(countData, []);
 
-    React.useEffect(uploadFileImage,[]);
+   
+    // const uploadFileImage = () => {
+    //     const fn = async () => {
+    //        await onSaveFile();
+    //     };
+    //     fn().then();
+    // }
+
+    // React.useEffect(uploadFileImage,[]);
 
     return {
         submit,
