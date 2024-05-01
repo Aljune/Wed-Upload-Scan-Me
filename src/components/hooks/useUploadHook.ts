@@ -93,7 +93,7 @@ const useUploadHook = () => {
         };
         fn().then();
     }
-    React.useEffect(uploadFileImage, []);
+    React.useEffect(uploadFileImage, [upload]);
 
     return {
         submit,
