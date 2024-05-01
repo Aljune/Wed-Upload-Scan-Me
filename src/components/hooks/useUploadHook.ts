@@ -69,7 +69,7 @@ const useUploadHook = () => {
         
 
        const re = await addSendPic(dataTest);
-        if(res.docrRef) {
+        if(re.docrRef) {
              await onSaveFile();
         }
        // setUpload(true);
