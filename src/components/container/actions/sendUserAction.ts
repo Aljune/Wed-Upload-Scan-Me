@@ -1,5 +1,3 @@
-import React from "react";
-
 import { db ,collection, addDoc, getDocs } from '../../../config/firebaseInitializer';
 
 export interface FormData {
