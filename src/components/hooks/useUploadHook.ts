@@ -104,7 +104,6 @@ const useUploadHook = () => {
         setDataEdit,
         fileObjects,
         setFileObjects,
-        uploadFileImage
     }
 }
 export default useUploadHook;
