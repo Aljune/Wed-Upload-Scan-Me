@@ -76,14 +76,13 @@ const useUploadHook = () => {
             try {
               const docRef = await addDoc(collection(db, "images"), {
                 imageUrl: imageUrls,
-                // Add additional fields if needed
               });
               console.log("Image uploaded and saved with ID: ", docRef.id);
             } catch (error) {
               console.error("Error adding image document: ", error);
             }
           }
-        // setUpload(false);
+        setUpload(false);
     }
     const uploadFileImage = () => {
         const fn = async () => {
