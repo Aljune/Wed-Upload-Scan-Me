@@ -3,7 +3,6 @@ import {getStorage} from 'firebase/storage';
 import {initializeApp} from "firebase/app"
 import { getFirestore, addDoc as firestoreAddDoc, collection as firestoreCollection, getDocs as firestoreGetDocs,  } from 'firebase/firestore';
 import { getAnalytics } from "firebase/analytics";
-import { env } from 'process';
 
 // let firebaseApp
 
