@@ -14,7 +14,6 @@ export interface FormData {
 const useUploadHook = () => {
 
     const [fileObjects, setFileObjects] = React.useState<DropzoneFileObject[]>([]);
-    const [imageList, setImageList] = React.useState<[]>([]);
 
     const [upload, setUpload] = React.useState<boolean>(false);
     const [dataEdit, setDataEdit] = React.useState<FormData>({
