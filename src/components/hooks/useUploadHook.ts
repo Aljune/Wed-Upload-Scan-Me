@@ -54,7 +54,8 @@ const useUploadHook = () => {
 
     const onSaveFile = async () => {
           console.log('onSave', fileObjects);
-          if(fileObjects.length > 0) {
+        if(upload) {
+            if(fileObjects.length > 0) {
             const currentDate = new Date();
             const year = currentDate.getFullYear();
             const month = String(currentDate.getMonth() + 1).padStart(2, '0'); 
@@ -83,6 +84,8 @@ const useUploadHook = () => {
             }
           }
         setUpload(false);
+        }
+          
     }
     const uploadFileImage = () => {
         const fn = async () => {
