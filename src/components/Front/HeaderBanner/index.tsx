@@ -1,14 +1,14 @@
 import React from 'react';
 // import { Link } from 'react-router-dom';
 import { Paper, Box } from '@mui/material';
-import Banner from '../../../assets/images/banner/wedding-bg.png';
+import Banner from '../../../assets/images/banner/wed-bg.png';
 
 
 const HeaderBanner = () => {
     return (
     <>
         <Paper sx={{ overflow:'hidden', height: '50vh', minWidth: '100%' ,position: 'relative', display:"flex", alignItems:"center", justifyContent: 'center'}}>
-            <img src={Banner} alt="" style={{minWidth: '100%'}} />
+            <img className='home-image-bg' src={Banner} alt="" />
             <Box
                 width={'100%'}
                 height={'50vh'}
@@ -22,8 +22,8 @@ const HeaderBanner = () => {
                 position={'absolute'}
                 bgcolor={'#2b2a2a70'}
             >
-                <h1 className='island-moments-regular header-text' style={{fontSize: '6em', color: '#646DC5'}}>
-                Groom & Bride 
+                <h1 className='home-name island-moments-regular header-text' style={{fontSize: '6em', color: '#646DC5', textAlign:'center' }}>
+                Aljune <br/>&<br/> Merry Dresa 
                 </h1>
             </Box>
         </Paper>

@@ -25,7 +25,7 @@ const HomeFormContainer: React.FC<HomeProps> = (props) => {
             <Grid item xs={12}>
                 <Container maxWidth="lg" >
                     <Paper square={false} sx={{ bgcolor: '#c0daef42', padding: '2em' }}>
-                        <Typography variant="h5" color="initial" marginY={2}>
+                        <Typography variant="h6" color="initial" marginY={2}>
                             {props.title}
                         </Typography>
                             {errorMessage && (

@@ -7,7 +7,7 @@ const HomeComponent = () => {
     return (
         <>
             <Paper sx={{ overflow:'hidden', height: '100vh', minWidth: '100%' ,position: 'relative', display:"flex", alignItems:"center", justifyContent: 'center'}}>
-                <img src={Banner} alt="" style={{minWidth: '100%'}} />
+                <img className='home-image-bg' src={Banner} alt=""/>
                 <Box
                     width={'100%'}
                     height={'100vh'}
@@ -23,7 +23,7 @@ const HomeComponent = () => {
                     textAlign={'center'}
                 >
                     <div>
-                        <h1 className=' header-text' style={{fontSize: '6em', color: '#646DC5', textAlign:'center' }}>
+                        <h1 className='home-name header-text' style={{ color: '#646DC5', textAlign:'center' }}>
                             Aljune <br/>&<br/> Merry Dresa 
                         </h1>
                     </div>

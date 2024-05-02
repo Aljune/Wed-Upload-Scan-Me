@@ -8,6 +8,12 @@
     -webkit-text-stroke-color: #FFFFFF;
 }
 
+.home-name {
+  font-size: 6em!important;
+}
+.home-image-bg {
+  min-width: 100%;
+}
 .MuiDropzonePreviewList-imageContainer {
   word-wrap: break-word;
 }
@@ -48,5 +54,15 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+@media only screen and (max-width: 426px) {
+  .home-name {
+    font-size: 3em!important;
+  }
+  .home-image-bg {
+    min-width: auto;
+    height: 100vh;
   }
 }
