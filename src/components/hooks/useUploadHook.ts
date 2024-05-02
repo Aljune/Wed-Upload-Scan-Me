@@ -15,11 +15,11 @@ const useUploadHook = () => {
 
     const [fileObjects, setFileObjects] = React.useState<DropzoneFileObject[]>([]);
 
-    // const [upload, setUpload] = React.useState<boolean>(false);
     const [dataEdit, setDataEdit] = React.useState<FormData>({
         name: '',
         message: ''
     });
+    const [errorMessage, setErrorMessage] = React.useState<string>('');
 
     const { handleSubmit, control } = useForm({
         defaultValues: {
@@ -28,51 +28,59 @@ const useUploadHook = () => {
         },
     });
 
-     const onSaveFile = async () => {
-         if(fileObjects.length > 0) {
-            const currentDate = new Date();
-            const year = currentDate.getFullYear();
-            const month = String(currentDate.getMonth() + 1).padStart(2, '0'); 
-            const day = String(currentDate.getDate()).padStart(2, '0');
-  
-            // Construct the storage path with the current date
-            const storagePath = `images/sender/${year}${month}${day}/`;
-  
-            const imageUrls = [];
-            for (const fileObj of fileObjects) {
-              const filePath = storagePath + fileObj.file.name;
-              const storageRef = ref(firebaseStorage, filePath);
-              await uploadBytes(storageRef, fileObj.file);
-              const imageUrl = await getDownloadURL(storageRef);
-              console.log(imageUrl, 'imageUrls')
-              imageUrls.push(imageUrl);
-            }
-            console.log(imageUrls, 'imageUrls');
-            try {
-              const docRef = await addDoc(collection(db, "images"), {
-                imageUrl: imageUrls,
-              });
-              console.log("Image uploaded and saved with ID: ", docRef.id);
-            } catch (error) {
-              console.error("Error adding image document: ", error);
-            }
-          }
-        // setUpload(false);
-          
-    }
+    const onSaveFile = async (data: FormData) => {
+        console.log('onSave', fileObjects);
+        const username = data.name.replace(/\s+/g, '-');;
 
+        if(fileObjects.length > 0) {
+          const currentDate = new Date();
+          const year = currentDate.getFullYear();
+          const month = String(currentDate.getMonth() + 1).padStart(2, '0'); 
+          const day = String(currentDate.getDate()).padStart(2, '0');
+
+          // Construct the storage path with the current date
+          const storagePath = `images/sender/${username}/${year}${month}${day}/`;
+
+          const imageUrls = [];
+          for (const fileObj of fileObjects) {
+            const filePath = storagePath + fileObj.file.name;
+            const storageRef = ref(firebaseStorage, filePath);
+            await uploadBytes(storageRef, fileObj.file);
+            const imageUrl = await getDownloadURL(storageRef);
+            console.log(imageUrl, 'imageUrls')
+            imageUrls.push(imageUrl);
+          }
+          console.log(imageUrls, 'imageUrls');
+          try {
+            const docRef = await addDoc(collection(db, "images"), {
+              imageUrl: imageUrls,
+              // Add additional fields if needed
+            });
+            console.log("Image uploaded and saved with ID: ", docRef.id);
+          } catch (error) {
+            console.error("Error adding image document: ", error);
+          }
+        }
+  }
     const submit = async (data: FormData) => {
+
+    
+        if (!data.name || !data.message || data.name.trim() === '' || data.message.trim() === '') {
+            setErrorMessage('Name and message are required.')
+            return;
+        }
+        
         const dataTest = {
             name: data.name,
             message: data.message
         };
         
-
-       const re = await addSendPic(dataTest);
-        if(re.docRef) {
-             await onSaveFile();
+        setErrorMessage('')
+        
+        const re = await addSendPic(dataTest);
+        if(re.docRef){
+            await onSaveFile(dataTest);
         }
-       // setUpload(true);
         console.log(re.docRef, countUser,'test'); 
     }
 
@@ -87,15 +95,6 @@ const useUploadHook = () => {
     }
     React.useEffect(countData, []);
 
-   
-    // const uploadFileImage = () => {
-    //     const fn = async () => {
-    //        await onSaveFile();
-    //     };
-    //     fn().then();
-    // }
-
-    // React.useEffect(uploadFileImage,[]);
 
     return {
         submit,
@@ -104,6 +103,8 @@ const useUploadHook = () => {
         setDataEdit,
         fileObjects,
         setFileObjects,
+        onSaveFile,
+        errorMessage
     }
 }
 export default useUploadHook;

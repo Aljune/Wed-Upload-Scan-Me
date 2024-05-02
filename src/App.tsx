@@ -3,6 +3,8 @@ import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Front/Header';
 import Home from './Pages/Home/page';
+import HomeForm from './Pages/Home/Form/FormPage';
+
 import QRcode from './Pages/QRcode/page';
 import './App.css';
 
@@ -18,6 +20,7 @@ const App: React.FC = () => {
       <Header/>
       <Routes>
         <Route path="/" element={<Home/>} />
+        <Route path="/wed-scan-me-form" element={<HomeForm/>} />
         <Route path="/my-qr-code" element={<QRcode/>} />
       </Routes>
     </Router>

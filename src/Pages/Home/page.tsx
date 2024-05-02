@@ -1,13 +1,13 @@
 import React from 'react';
-import HomeContainer from '../../components/container/Home/HomeContainer';
+import HomeComponent from '../../components/container/Home/HomeComponent';
 
 
 
-const HomePage: React.FC = () => {
+const HomePage = () => {
 
     return (
         <>
-            <HomeContainer title='Welcome To My Page'/>
+            <HomeComponent/>
         </>
     );
   };

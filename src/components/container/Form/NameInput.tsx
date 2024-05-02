@@ -18,7 +18,7 @@ const NameInput = <T extends FieldValues & NameInputField>(props: NameInputProps
             defaultValue={"" as PathValue<T, Path<T & NameInputField>>}
             control={props.control}
             render={({field}) => (
-                <TextField value={field.value} onChange={field.onChange} fullWidth={true} id="outlined-basic" label="Name" variant="outlined" />
+                <TextField value={field.value} onChange={field.onChange} fullWidth={true} id="outlined-basic" label="Full Name" variant="outlined" />
             )}
         />
     )
