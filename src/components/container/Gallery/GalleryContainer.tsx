@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Box, Container, Grid, Paper } from "@mui/material";
 import HeaderBanner from "../../Front/HeaderBanner";
 import CardItem from "../commons/CardItem";
@@ -8,11 +8,7 @@ import Loading from "../commons/Loading";
 
 const GalleryComponent = () => {
 
-  const {listItem, loading, fethDataList} = useUploadHook();
-  useEffect(() => {
-    fethDataList();
-  }, []); 
-  
+  const {listItem, loading} = useUploadHook();
     return (
         <>
             <HeaderBanner/>
