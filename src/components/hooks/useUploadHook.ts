@@ -142,6 +142,7 @@ const useUploadHook = () => {
     const countData = () => {
         const fn = async () => {
             const countUsers = await countUser();
+            console.log(countUsers, 'countUsers');
         };
         fn().then();
     }
