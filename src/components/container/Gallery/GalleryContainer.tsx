@@ -9,7 +9,10 @@ import Loading from "../commons/Loading";
 const GalleryComponent = () => {
 
   const {listItem, loading, fethDataList} = useUploadHook();
-  React.useEffect(fethDataList, []);
+  const init = () => {
+    fethDataList();
+  }
+  React.useEffect(init, []);
     return (
         <>
             <HeaderBanner/>
