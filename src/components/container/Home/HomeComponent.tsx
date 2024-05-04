@@ -23,7 +23,7 @@ const HomeComponent = () => {
                     textAlign={'center'}
                 >
                     <div>
-                        <h1 className='home-name header-text' style={{ color: '#646DC5', textAlign:'center' }}>
+                        <h1 className='home-name header-text' style={{ color: '#f5f5f5', textAlign:'center', fontFamily: 'initial' }}>
                             Aljune <br/>&<br/> Merry Dresa 
                         </h1>
                     </div>

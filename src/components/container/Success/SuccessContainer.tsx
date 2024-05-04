@@ -12,7 +12,7 @@ const SuccessContainer = () => {
                             <Paper square={false} sx={{ bgcolor: '#c0daef42', padding: '2em' }}>
                                 <Box display={"flex"} gap={2} flexDirection={"column"} justifyContent={'center'} flexWrap={'wrap'} alignItems={'center'}>
                                     <Grid item>
-                                        <Typography variant="body1" color="initial">Message and Photos sent!</Typography>
+                                        <Typography variant="body1" color="initial">Message and photo sent!</Typography>
                                     </Grid>
                                     <Grid>
                                         <a href="/user-gallery">

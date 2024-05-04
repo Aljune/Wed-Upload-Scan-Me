@@ -1,4 +1,3 @@
-// import { fethData } from './../container/actions/sendUserAction';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { addSendPic, countUser, fethData } from '../container/actions/sendUserAction';
@@ -29,9 +28,8 @@ export interface FormData {
 
 const useUploadHook = () => {
 
-    
+    const [loading, setLoading] = React.useState<boolean>(false);
     const [fileObjects, setFileObjects] = React.useState<DropzoneFileObject[]>([]);
-
     const [dataEdit, setDataEdit] = React.useState<FormData>({
         name: '',
         message: ''
@@ -40,7 +38,6 @@ const useUploadHook = () => {
     const [errorMessage, setErrorMessage] = React.useState<string>('');
     const navigate = useNavigate ();
 
-    
     const { handleSubmit, control } = useForm({
         defaultValues: {
             name: dataEdit.name,
@@ -50,6 +47,7 @@ const useUploadHook = () => {
 
     const onSaveFile = async (data: FormData) => {
         console.log('onSave', fileObjects);
+        setLoading(true);
         const username = data.name.replace(/\s+/g, '-');;
 
         if(fileObjects.length > 0) {
@@ -80,6 +78,7 @@ const useUploadHook = () => {
            
             const re = await addSendPic(dataTest);
             if(re.docRef){
+                setLoading(false);
                 setErrorMessage('');
                 navigate('/succesfuly-sent');
             }
@@ -92,11 +91,12 @@ const useUploadHook = () => {
         }
   }
     const submit = async (data: FormData) => {
-
+        
         if (!data.name || !data.message || data.name.trim() === '' || data.message.trim() === '') {
             setErrorMessage('Name and message are required.')
             return;
         }
+
         const dataTest = {
             name: data.name,
             message: data.message
@@ -106,7 +106,9 @@ const useUploadHook = () => {
 
     const fethDataList = () => {
        const fn = async () => {
+        setLoading(true);
         const data = await fethData();
+        
         const dataList: ListItemType[] = [];
             data.querySnapshot.forEach((doc) => {
                 const dateTimestamp = doc.data().date;
@@ -134,11 +136,12 @@ const useUploadHook = () => {
             });
 
             setListItem(dataList);
+            setLoading(false);
        };
        fn().then();
+       
     }
-    React.useEffect(fethDataList, []);
-  
+    
     const countData = () => {
         const fn = async () => {
             const countUsers = await countUser();
@@ -159,6 +162,8 @@ const useUploadHook = () => {
         errorMessage,
         setListItem,
         listItem,
+        loading,
+        fethDataList
     }
 }
 export default useUploadHook;

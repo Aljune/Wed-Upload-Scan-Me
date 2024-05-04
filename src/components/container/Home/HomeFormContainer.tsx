@@ -9,6 +9,7 @@ import MessageInput from '../Form/MessageInput';
 import FileUpload from '../commons/FileUpload';
 import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
+import Loading from '../commons/Loading';
 
 interface HomeProps {
   title: string
@@ -16,8 +17,8 @@ interface HomeProps {
 
 const HomeFormContainer: React.FC<HomeProps> = (props) => {
    
-    const {submit, handleSubmit, control, fileObjects, setFileObjects, errorMessage} = useUploadHook();
-    
+    const {submit, handleSubmit, control, fileObjects, setFileObjects, errorMessage, loading} = useUploadHook();
+
     return (
         <>
         <HeaderBanner/>
@@ -25,9 +26,11 @@ const HomeFormContainer: React.FC<HomeProps> = (props) => {
             <Grid item xs={12}>
                 <Container maxWidth="lg" >
                     <Paper square={false} sx={{ bgcolor: '#c0daef42', padding: '2em' }}>
+                        
                         <Typography variant="h6" color="initial" marginY={2}>
                             {props.title}
                         </Typography>
+                            {loading && <Loading />}
                             {errorMessage && (
                                 <>
                                  <Stack sx={{ width: '100%' }} marginY={2} spacing={2}>
