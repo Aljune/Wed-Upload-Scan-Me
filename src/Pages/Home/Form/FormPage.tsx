@@ -7,7 +7,7 @@ const HomePage: React.FC = () => {
 
     return (
         <>
-            <HomeFormContainer title='Hello! Could you kindly share a picture featuring the newlywed couple? Thank you!'/>
+            <HomeFormContainer title='To enter, tell us who you are and send one or more messages and photos.'/>
         </>
     );
   };

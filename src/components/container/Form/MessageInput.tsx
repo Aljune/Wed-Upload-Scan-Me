@@ -18,7 +18,7 @@ const MessageInput = <T extends FieldValues & MessageInputtField>(props: Message
             defaultValue={"" as PathValue<T, Path<T & MessageInputtField>>}
             control={props.control}
             render={({field}) => (
-                <TextField minRows={4} multiline={true} value={field.value} onChange={field.onChange} fullWidth={true} id="outlined-basic" label="Message" variant="outlined" />
+                <TextField minRows={4} multiline={true} value={field.value} onChange={field.onChange} fullWidth={true} id="outlined-basic" label="Your Message" variant="outlined" />
             )}
         />
     )

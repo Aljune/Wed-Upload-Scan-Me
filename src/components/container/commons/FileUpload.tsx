@@ -10,16 +10,13 @@ export interface FileUploadProps {
 const FileUpload = (props: FileUploadProps) => {
 
     const addImage = (newFileObjs: DropzoneFileObject[]) => {
-      console.log('onAdd', newFileObjs);
       props.setFileObjects(prevFileObjects => [...prevFileObjects, ...newFileObjs]);
     }
-    console.log(props.fileObjects, 'fileObjects');
 
     return (
        <>
-           
             <DropzoneAreaBase
-                dropzoneText={"Drag and drop an image here or click"}
+                dropzoneText={"ADD PHOTO"}
                 acceptedFiles={['image/*']}
                 fileObjects={props.fileObjects}
                 maxFileSize={2147483647}
@@ -30,7 +27,6 @@ const FileUpload = (props: FileUploadProps) => {
                   props.setFileObjects(prevFileObjects => prevFileObjects.filter(obj => obj !== deleteFileObj));
                 }}
                 onAlert={(message, variant) => console.log(`${variant}: ${message}`)}
-
             />
        </>
     )

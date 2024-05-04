@@ -27,6 +27,13 @@
   pointer-events: none;
 }
 
+.MuiDropzoneArea-icon {
+  color: #3f9cc1!important;
+}
+.form-home .MuiDropzoneArea-root {
+  min-height: 100px;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

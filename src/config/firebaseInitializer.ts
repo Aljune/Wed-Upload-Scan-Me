@@ -1,7 +1,7 @@
 import 'firebase/storage';
 import {getStorage} from 'firebase/storage';
 import {initializeApp} from "firebase/app"
-import { getFirestore, addDoc as firestoreAddDoc, collection as firestoreCollection, getDocs as firestoreGetDocs,  } from 'firebase/firestore';
+import { getFirestore, addDoc as firestoreAddDoc, collection as firestoreCollection, getDocs as firestoreGetDocs, Timestamp as firestireTimestamp } from 'firebase/firestore';
 import { getAnalytics } from "firebase/analytics";
 
 const firebaseConfig = {
@@ -14,9 +14,11 @@ const firebaseConfig = {
         measurementId:process.env.REACT_APP_FIREBASE_MEASUREMENT_ID
   };
 const firebaseApp = initializeApp(firebaseConfig);
+const dateTimetampNow = firestireTimestamp.now();
 export const analytics = getAnalytics(firebaseApp);
 export const firebaseStorage = getStorage(firebaseApp);
 export const db = getFirestore(firebaseApp)
 export const addDoc = firestoreAddDoc;
 export const collection = firestoreCollection;
 export const getDocs = firestoreGetDocs;
+export const Timestamp = dateTimetampNow;

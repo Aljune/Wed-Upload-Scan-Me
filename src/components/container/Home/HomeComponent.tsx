@@ -36,10 +36,9 @@ const HomeComponent = () => {
                     </div>
                     <div>
                         <a href="/wed-scan-me-form">
-                            <Button sx={{width: '150px'}} fullWidth={false} size="medium" variant='contained' color='success' >ENTER</Button>
+                            <Button sx={{width: '150px', bgcolor: '#7aa6b7'}} fullWidth={false} size="medium" variant='contained' >ENTER</Button>
                         </a>
                     </div>
-                    
                 </Box>
         </Paper>
         </>

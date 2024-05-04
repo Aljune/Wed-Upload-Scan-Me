@@ -21,7 +21,7 @@ const HomeFormContainer: React.FC<HomeProps> = (props) => {
     return (
         <>
         <HeaderBanner/>
-        <Grid container={true}  spacing={2}  gap={2} padding={2}>
+        <Grid container={true}  spacing={2}  gap={2} padding={2} className='form-home'>
             <Grid item xs={12}>
                 <Container maxWidth="lg" >
                     <Paper square={false} sx={{ bgcolor: '#c0daef42', padding: '2em' }}>
@@ -40,14 +40,13 @@ const HomeFormContainer: React.FC<HomeProps> = (props) => {
                                     <NameInput control={control}/>
                                     <MessageInput control={control}/>
                                     <FileUpload fileObjects={fileObjects} setFileObjects={setFileObjects} />
-                                    <Button sx={{width: '150px'}} fullWidth={false} type='submit' size="medium" variant='contained' color='success' >Submit Now</Button>
+                                    <Button sx={{width: '150px',  bgcolor: '#7aa6b7'}}  fullWidth={false} type='submit' size="medium" variant='contained' >Submit Now</Button>
                                 </Box>
                             </form>
                     </Paper>
                 </Container>
             </Grid>
         </Grid>
-        
         </>
     )
 }
