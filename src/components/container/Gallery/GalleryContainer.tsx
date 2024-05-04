@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Box, Container, Grid, Paper } from "@mui/material";
 import HeaderBanner from "../../Front/HeaderBanner";
 import CardItem from "../commons/CardItem";
@@ -9,10 +9,10 @@ import Loading from "../commons/Loading";
 const GalleryComponent = () => {
 
   const {listItem, loading, fethDataList} = useUploadHook();
-  const init = () => {
+  useEffect(() => {
     fethDataList();
-  }
-  React.useEffect(init, []);
+  }, []); 
+  
     return (
         <>
             <HeaderBanner/>
@@ -27,17 +27,22 @@ const GalleryComponent = () => {
                             {loading && <Loading />}
                               <Paper square={false} sx={{ bgcolor: '#c0daef42', padding: '2em' }}>
                                   <Box display={"flex"} flexDirection={"row"} flexWrap={'wrap'} alignItems={'flex-start'}>
-                                      {listItem && listItem.map((item, index) => (
-                                          <CardItem
-                                              id={Number(index)}
-                                              avatar={item.avatar}
-                                              title={item.name}
-                                              subheader={item.subheader!}
-                                              description={item.message}
-                                              image={item.imageUrl!}
-                                              method={item.message}
-                                          />
-                                      ))}
+                                       {listItem && listItem.length > 0 ? (
+                                            
+                                            listItem.map((item, index) => (
+                                                <CardItem
+                                                    id={Number(index)}
+                                                    avatar={item.avatar}
+                                                    title={item.name}
+                                                    subheader={item.subheader!}
+                                                    description={item.message}
+                                                    image={item.imageUrl!}
+                                                    method={item.message}
+                                                />
+                                            ))
+                                          ) : (
+                                            <div>No records found.</div>
+                                        )}
                                       </Box>
                               </Paper>
                       </Container>
