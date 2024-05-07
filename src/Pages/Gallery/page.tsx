@@ -14,7 +14,7 @@ const GalleryPage = () => {
             setUser('admin');
         }
     }
-    useEffect(init,[user]);
+    useEffect(init,[pathname]);
 
     return (
         <>

@@ -1,4 +1,3 @@
-import React from 'react';
 import { Box, Container, Grid, Paper } from "@mui/material";
 import HeaderBanner from "../../Front/HeaderBanner";
 import CardItem from "../commons/CardItem";
@@ -13,11 +12,8 @@ interface GalleryProps {
 
 const GalleryComponent = (props: GalleryProps) => {
 
-  const {listItem, loading, fethDataList, setIdDelete, errorMessage} = useUploadHook();
-  const init = () => {
-    fethDataList();
-  }
-  React.useEffect(init, []);
+  const {listItem, loading, setIdDelete, errorMessage} = useUploadHook();
+  
     return (
         <>
             <HeaderBanner/>

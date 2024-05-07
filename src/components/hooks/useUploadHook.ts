@@ -148,6 +148,8 @@ const useUploadHook = () => {
        fn().then();
        
     }
+ 
+    React.useEffect(fethDataList, []);
     
     const countData = () => {
         const fn = async () => {
