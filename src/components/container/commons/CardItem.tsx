@@ -13,20 +13,29 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
+import DeleteIcon from '@mui/icons-material/Delete';
+
+interface ExpandMoreType{
+    id: string;
+    avatar: string;
+    name: string;
+    description: string;
+    image: string[];
+    subheader: string;
+    // method: string | undefined;
+}
+export interface CardItemProps {
+    data: ExpandMoreType[] | [];
+    role: string;
+    setIdDelete: (id: string) => void;
+}
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
 }
 
-interface ExpandMoreType{
-    id: number;
-    avatar: string;
-    title: string;
-    subheader: string;
-    description: string;
-    image: string[];
-    method: string | undefined;
-}
 
 const ExpandMore = styled((props: ExpandMoreProps) => {
     const { expand, ...other } = props;
@@ -39,45 +48,76 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
     }),
   }));
 
-const CardItem: React.FC<ExpandMoreType> = (props) => {
-    const [expandedKey, setExpandedKey] = React.useState<number | null>(null);
+
+const CardItem: React.FC<CardItemProps> = (props) => {
+
+    const [expandedKey, setExpandedKey] = React.useState<string | null>(null);
     const [reactStatus, setReactStatus] = React.useState<boolean>(false);
-    const handleExpandClick = (id: number) => {
+
+    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+
+
+    const handleExpandClick = (id: string) => {
         console.log(id, 'expandedKey');
         setExpandedKey((prevKey) => (prevKey === id ? null : id));
     };
     const handleReactClick = () => {
         setReactStatus((prevStatus) => !prevStatus);
     }
-    console.log(reactStatus, 'reactStatus');
+  
+    const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
     return (
         <>
-            <Card sx={{ maxWidth: 345, margin: '8px' }}>
+        {props.data && props.data.length > 0 ? ( 
+            props.data.map((item) => ( 
+                <Card sx={{ maxWidth: 345, margin: '8px' }}>
                 <CardHeader
                     avatar={
                     <Avatar sx={{ bgcolor: '#7aa6b7' }} aria-label="recipe">
-                        {props.avatar}
+                        {item.avatar}
                     </Avatar>
                     }
+
                     action={
-                    <IconButton aria-label="settings">
-                        <MoreVertIcon />
-                    </IconButton>
+                        props.role === 'admin' ? (
+                            <IconButton  onClick={handleClick}  aria-label="settings">
+                                <MoreVertIcon /> 
+                            </IconButton>
+                        ) : null // Or any other component you want to render for non-admin users
                     }
                     title={<Typography sx={{fontWeight: "bold"}}>
-                        {props.title}
+                        {item.name}
                     </Typography>}
-                    subheader={props.subheader}
+                    subheader={item.subheader}
                 />
+                <Menu
+                    id="simple-menu"
+                    anchorEl={anchorEl}
+                    open={Boolean(anchorEl)}
+                    onClose={handleClose}
+                >
+                    <MenuItem onClick={() => {
+                        props.setIdDelete(item.id);
+                        setAnchorEl(null);
+                    }}><DeleteIcon/></MenuItem>
+                    
+                </Menu>
                 <CardMedia
                     component="img"
                     height="194"
-                    image={props.image.length > 0 ? props.image[0] : ""} 
-                    alt={props.title}
+                    image={item.image.length > 0 ? item.image[0] : ""} 
+                    alt={item.name}
                 />
                 <CardContent>
                     <Typography variant="body2" color="text.secondary">
-                        {props.description.length > 25 ? props.description.slice(0, 25) + '...' : props.description}
+                        {item.description.length > 25 ? item.description.slice(0, 25) + '...' : item.description}
                     </Typography>
                 </CardContent>
                 <CardActions disableSpacing>
@@ -88,25 +128,31 @@ const CardItem: React.FC<ExpandMoreType> = (props) => {
                     <ShareIcon />
                     </IconButton>
                     <ExpandMore
-                        expand={props.id === expandedKey}
-                        onClick={() => handleExpandClick(props.id)}
-                        aria-expanded={props.id === expandedKey ? "true" : "false"}
+                        expand={item.id === expandedKey}
+                        onClick={() => handleExpandClick(item.id)}
+                        aria-expanded={item.id === expandedKey ? "true" : "false"}
                         aria-label="show more"
                     >
                     <ExpandMoreIcon />
                     </ExpandMore>
                 </CardActions>
-                <Collapse in={props.id === expandedKey} timeout="auto" unmountOnExit>
+                <Collapse in={item.id === expandedKey} timeout="auto" unmountOnExit>
                     <CardContent>
                     <Typography sx={{fontWeight: "bold"}} paragraph>Message:</Typography>
                     <Typography paragraph>
-                        {props.method}
+                        {/* {item.method} */}
                     </Typography>
                     </CardContent>
                 </Collapse>
             </Card>
-        
-        </>
+           
+            )) 
+
+        ):(
+            <Typography>No records available</Typography>
+        )
+        }    
+    </>
     )
 };
 export default CardItem;

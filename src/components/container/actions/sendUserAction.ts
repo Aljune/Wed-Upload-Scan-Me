@@ -1,4 +1,4 @@
-import { db ,collection, addDoc, getDocs } from '../../../config/firebaseInitializer';
+import { db ,collection, addDoc, getDocs, doc, deleteDoc } from '../../../config/firebaseInitializer';
 
 interface FirestoreTimestamp {
     toDate(): Date;
@@ -19,6 +19,23 @@ export const addSendPic = async (data: FormData) => {
         const docRef = await addDoc(collection(db, "sender"), data);
 
         return {docRef}
+
+    }
+    catch (err){
+        console.error("Error creating Bases:", err);
+        throw new Error("Failed to create bases");
+    }
+}
+
+
+
+export const deleteSendPic = async (id: string) => {
+
+    try {
+    
+        const docRefDelete = await deleteDoc(doc(db, "sender", id));
+
+        return {docRefDelete}
 
     }
     catch (err){

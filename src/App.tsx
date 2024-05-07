@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 // import logo from './logo.svg';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Front/Header';
@@ -12,7 +12,9 @@ import './App.css';
 
 const App: React.FC = () => {
 
+ 
   const loadPage = () => {
+
     document.title = "Wedding"; 
   }
   useEffect(loadPage, []);
@@ -23,6 +25,7 @@ const App: React.FC = () => {
         <Route path="/" element={<Home/>} />
         <Route path="/wed-scan-me-form" element={<HomeForm/>} />
         <Route path="/my-qr-code" element={<QRcode/>} />
+        <Route path="/admin-gallery" element={<Gallery/>} />
         <Route path="/user-gallery" element={<Gallery/>} />
         <Route path="/succesfuly-sent" element={<Success/>} />
       </Routes>

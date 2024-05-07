@@ -1,7 +1,16 @@
 import 'firebase/storage';
 import {getStorage} from 'firebase/storage';
 import {initializeApp} from "firebase/app"
-import { getFirestore, addDoc as firestoreAddDoc, collection as firestoreCollection, getDocs as firestoreGetDocs, Timestamp as firestireTimestamp } from 'firebase/firestore';
+import { 
+  getFirestore, 
+  addDoc as firestoreAddDoc, 
+  collection as firestoreCollection, 
+  getDocs as firestoreGetDocs, 
+  Timestamp as firestireTimestamp,
+  deleteDoc as firestoreDeleteDoc,
+  doc as firestoreDoc ,
+
+} from 'firebase/firestore';
 import { getAnalytics } from "firebase/analytics";
 
 const firebaseConfig = {
@@ -21,4 +30,6 @@ export const db = getFirestore(firebaseApp)
 export const addDoc = firestoreAddDoc;
 export const collection = firestoreCollection;
 export const getDocs = firestoreGetDocs;
+export const deleteDoc = firestoreDeleteDoc;
+export const doc = firestoreDoc;
 export const Timestamp = dateTimetampNow;

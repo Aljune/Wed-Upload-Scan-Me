@@ -1,6 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { addSendPic, countUser, fethData } from '../container/actions/sendUserAction';
+import { addSendPic, countUser, fethData, deleteSendPic } from '../container/actions/sendUserAction';
 import { FileObject as DropzoneFileObject } from 'material-ui-dropzone';
 
 import { firebaseStorage, Timestamp } from '../../config/firebaseInitializer';
@@ -12,11 +12,16 @@ export interface FirestoreTimestamp {
 }
 
 interface ListItemType {
+    id: string;
     avatar: string;
     name: string;
-    message: string;
-    imageUrl?: [];
-    subheader?: string;
+    description: string;
+    image: string[];
+    subheader: string;
+}
+
+export interface CardItemProps {
+    data: ListItemType[]
 }
 
 export interface FormData {
@@ -34,8 +39,10 @@ const useUploadHook = () => {
         name: '',
         message: ''
     });
-    const [listItem, setListItem] = React.useState<ListItemType[]>([]);
+    const [listItem, setListItem] = React.useState<CardItemProps[]>([]);
     const [errorMessage, setErrorMessage] = React.useState<string>('');
+    const [deleteId, setIdDelete] = React.useState<string | null>(null);;
+
     const navigate = useNavigate ();
 
     const { handleSubmit, control } = useForm({
@@ -126,8 +133,8 @@ const useUploadHook = () => {
                     id: doc.id,
                     avatar: capitalizedFirstLetter,
                     name: name,
-                    message: doc.data().message,
-                    imageUrl: doc.data().imageUrl,
+                    description: doc.data().message,
+                    image: doc.data().imageUrl,
                     subheader: formattedDate
                 };
                 dataList.push(senderData);
@@ -135,14 +142,12 @@ const useUploadHook = () => {
                 console.log(senderData, 'adasd');
             });
 
-            setListItem(dataList);
+            setListItem([{ data: dataList }]);
             setLoading(false);
        };
        fn().then();
        
     }
-
-    React.useEffect(fethDataList, []);
     
     const countData = () => {
         const fn = async () => {
@@ -152,6 +157,21 @@ const useUploadHook = () => {
         fn().then();
     }
     React.useEffect(countData, []);
+
+    const handleIdDelete = () => {
+        const fn = async () => {
+            if(deleteId) {
+                const res = await deleteSendPic(deleteId!);
+                if(res) {
+                    console.log('successdelete');
+                    setErrorMessage('Succcessfuly Deleted')
+                    window.location.reload();
+                }
+            }
+        };
+        fn().then();
+    }
+    React.useEffect(handleIdDelete, [deleteId]);
 
     return {
         submit,
@@ -165,7 +185,9 @@ const useUploadHook = () => {
         setListItem,
         listItem,
         loading,
-        fethDataList
+        fethDataList,
+        setIdDelete,
+        handleIdDelete
     }
 }
 export default useUploadHook;
